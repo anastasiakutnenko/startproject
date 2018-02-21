@@ -1,3 +1,5 @@
+package tests;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -28,21 +30,15 @@ public class IntercomWidget {
         driver.get("https://qa.gosimplr.com/__/chatTestQA.html");
         Thread.sleep(5000);
         driver.switchTo().frame("intercom-launcher-discovery-frame");
-        Thread.sleep(5000);
-        driver.findElement(By.id("intercom-container-body")).click();
+        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(By.id("intercom-container-body"))).click();
         driver.switchTo().defaultContent();
         driver.switchTo().frame("intercom-messenger-frame");
         driver.findElement(By.className("intercom-header-buttons-back-contents")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//*[@id=\"intercom-container\"]/div/span[1]/div/div[3]/button")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//*[@id=\"intercom-container\"]/div/span[1]/div/div[3]/div/textarea")).sendKeys("Test message");
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//*[@id=\"intercom-container\"]/div/span[1]/div/div[3]/div/div/button[2]")).click();
+        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"intercom-container\"]/div/span[1]/div/div[3]/button"))).click();
+        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"intercom-container\"]/div/span[1]/div/div[3]/div/textarea"))).sendKeys("Test message");
+        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"intercom-container\"]/div/span[1]/div/div[3]/div/div/button[2]"))).click();
         driver.findElement(By.cssSelector("Body")).sendKeys(Keys.COMMAND + "t");
         driver.get("https://qa.gosimplr.com");
-        Thread.sleep(2000);
-
 
     }
 
